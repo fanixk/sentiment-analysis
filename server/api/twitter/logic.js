@@ -7,7 +7,11 @@ var util = require('util'),
 
 function twitterSearch(text, callback) {
   var twitterClient = new twitter(config.TWITTER);
-  var response = []
+  var response = [];
+  if (!text) {
+    console.error('Error: Twitter search term missing!');
+    return;
+  }
 
   twitterClient.search(text, function(data) {
     data.statuses.forEach(function(tweet, index) {
@@ -16,7 +20,7 @@ function twitterSearch(text, callback) {
         sentiment: sentimentAnalysis(tweet.text)
       });
     });
-    
+
     callback(response);
   });
 }
