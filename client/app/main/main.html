@@ -11,14 +11,28 @@
     </div>
     </div>
   </div>
-
   <div class="row">
-    <div class="col-lg-12">
-      <h2 class="page-header">{{ tweets.length > 0 ? "Tweets:" : "No tweets found!" }} </h2>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="tweet in tweets">
-        <li><a href="#" tooltip="{{tweet.sentiment.score}}">{{tweet.tweet.text}}</a></li>
+    <h2 class="page-header">{{ tweets.length > 0 ? "Tweets:" : "No tweets found!" }} </h2>
+
+  </div>  
+  <div class="row" ng-repeat="tweet in tweets">
+    <div class="col-lg-4">
+      <img ng-src="{{ tweet.tweet.user.profile_image_url }}" alt="">
+      {{tweet.tweet.text}}
+      <a href="http://twitter.com/{{ tweet.tweet.user.screen_name }}/status/{{tweet.tweet.id_str}}">Link</a>
+    </div>
+    <div class="col-lg-8">
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6">
+        <li>Score: {{ tweet.sentiment.score }}</li>
+        <li>Comparative: {{ tweet.sentiment.comparative }}</li>
+        <li>Favorited: {{ tweet.sentiment.favorite_count }}</li>
+        <li>Retweets: {{ tweet.sentiment.retweet_count }}</li>
+        <li>Words: {{ tweet.sentiment.words }}</li>
+        <li>Positive: {{ tweet.sentiment.positive }}</li>
+        <li>Negative: {{ tweet.sentiment.negative }}</li>
       </ul>
     </div>
+    <hr>
   </div>
 </div>
 

@@ -7,6 +7,7 @@ angular.module('sentimentAnalysisApp')
       $http.post('/api/twitter', {
         search: $scope.searchTerm
       }).success(function(tweets) {
+        console.log(tweets);
         $scope.tweets = tweets;
       });
     };
